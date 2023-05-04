@@ -1,10 +1,10 @@
 import React from 'react';
-import { LoadingMaze } from 'Lottie';
+import { Stats } from 'components/Stats';
 
 export const App = () => {
   return (
     <div>
-      <LoadingMaze />
+      <Stats />
     </div>
   )
 }
