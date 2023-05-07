@@ -1,10 +1,13 @@
-import React from 'react';
-import { Stats } from 'components/Stats';
+import React, { useState } from 'react';
+import { SearchBar } from 'components/SearchBar';
+import { SearchResultsList } from 'components/SearchResultsList';
 
 export const App = () => {
+  const [results, setResults] = useState([]);
   return (
     <div>
-      <Stats />
+      <SearchBar setResults={setResults} />
+      <SearchResultsList results={results} />
     </div>
   )
 }
