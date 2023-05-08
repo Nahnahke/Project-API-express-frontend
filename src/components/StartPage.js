@@ -1,22 +1,26 @@
 import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './SearchBar.css';
 
-export const SearchBar = ({ setResults }) => {
+export const StartPage = () => {
   const [searchInput, setSearchInput] = useState('');
+  const [results, setResults] = useState([]);
 
-  const FetchData = (value) => {
+  const fetchData = (value) => {
     fetch('https://project-express-api-e3l32b2upq-lz.a.run.app/titles')
       .then((res) => res.json())
       .then((data) => {
-        const results = data.filter((item) => {
+        console.log('data:', data);
+        const filteredResults = data.filter((item) => {
           return value && item && item.title.toLowerCase().includes(value)
         });
-        setResults(results);
+        setResults(filteredResults);
       })
   };
+
   const handleChange = (value) => {
     setSearchInput(value)
-    FetchData(value)
+    fetchData(value)
   };
 
   return (
@@ -33,6 +37,15 @@ export const SearchBar = ({ setResults }) => {
           </label>
         </form>
       </div>
+      <div className="results-list">
+        {results.map((result) => (
+          <div key={result.show_id}>
+            <Link to={`titles/${result.show_id}`}>
+              <p>{result.title}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
     </section>
   );
-}
+};

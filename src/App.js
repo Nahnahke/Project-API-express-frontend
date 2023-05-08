@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { SearchBar } from 'components/SearchBar';
-import { SearchResultsList } from 'components/SearchResultsList';
+import React from 'react';
+import { StartPage } from 'components/StartPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { MovieDetails } from 'components/MovieDetail';
 
 export const App = () => {
-  const [results, setResults] = useState([]);
   return (
-    <div>
-      <SearchBar setResults={setResults} />
-      <SearchResultsList results={results} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<StartPage />} />
+        <Route path="titles/title/:title" element={<MovieDetails />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
