@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './SearchBar.css';
+import './StartPage.css';
 
 export const StartPage = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -40,7 +40,7 @@ export const StartPage = () => {
       <div className="results-list">
         {results.map((result) => (
           <div key={result.show_id}>
-            <Link to={`titles/${result.show_id}`}>
+            <Link to={`titles/title/${result.show_id}`}>
               <p>{result.title}</p>
             </Link>
           </div>
